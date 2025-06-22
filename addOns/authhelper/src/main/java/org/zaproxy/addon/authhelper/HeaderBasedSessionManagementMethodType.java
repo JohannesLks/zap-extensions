@@ -456,7 +456,7 @@ public class HeaderBasedSessionManagementMethodType extends SessionManagementMet
     @Override
     public ApiDynamicActionImplementor getSetMethodForContextApiAction() {
         return new ApiDynamicActionImplementor(
-                API_METHOD_NAME, (String[]) null, new String[] {PARAM_HEADERS}) {
+                API_METHOD_NAME, new String[0], new String[] {PARAM_HEADERS}) {
 
             @Override
             public void handleAction(JSONObject params) throws ApiException {
