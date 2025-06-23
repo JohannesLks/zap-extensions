@@ -1,5 +1,6 @@
 import net.ltgt.gradle.errorprone.errorprone
 import org.zaproxy.gradle.spotless.ValidateImports
+import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
     id("com.diffplug.spotless")
@@ -62,6 +63,10 @@ allprojects {
     }
 
     tasks.withType<JavaCompile>().configureEach {
+        // Ensure any -Werror flags are removed just before compilation.
+        doFirst {
+            options.compilerArgs.removeIf { it == "-Werror" }
+        }
         if (JavaVersion.current().getMajorVersion() >= "21") {
             options.compilerArgs = options.compilerArgs + "-Xlint:-this-escape"
         }

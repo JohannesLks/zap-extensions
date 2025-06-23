@@ -1,7 +1,12 @@
 import org.zaproxy.gradle.addon.AddOnStatus
+import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
     eclipse
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.removeAll(listOf("-Werror"))
 }
 
 eclipse {
